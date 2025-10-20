@@ -1,5 +1,5 @@
 def main():
-    print("Camera node is running...")
+    print("ini fitur Camera node...")
 
     # ini untuk ngefix bug
 
