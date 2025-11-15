@@ -4,7 +4,7 @@ def cek_barang(gudang, nama_barang):
         print(f"Barang Tersedia, Stock: {stok}")
     else:
         print("Barang Tidak Ditemukan")
-
+        
 gudang = {"nasi": 10,"mie": 5,"teh": 8}
 cek_barang(gudang,"mie")
 cek_barang(gudang,"kopi")

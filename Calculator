@@ -1,0 +1,22 @@
+def calculate():
+    num1 = float(input("Masukkan angka: "))
+    operator = input(("Masukkan operator: "))
+    num2 = float(input("Masukkan angka: "))
+    
+    if operator == "+":
+        hasil = num1 + num2
+    elif operator == "-":
+        hasil = num1 - num2
+    elif operator == "*":
+        hasil = num1 * num2
+    elif operator == "/":
+        if num2 == 0:
+            hasil = "error: Tidak dapat dibagi oleh 0"
+        else:
+            hasil = num1 / num2
+    else:
+        hasil = "invalid operator"
+    
+    print(f"Hasil: {hasil}")
+
+calculate()
