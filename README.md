@@ -1,13 +1,3 @@
-awdwadawdadwadasda
-adwdwdw
-a
-ad
-
-
-
-wdwdwwww=====
-
-ini perubahan di branch pid
-
-
-sample
+Nama: Maulana Ra'afi 
+Kelas: D4 SIKC 49-03
+NIM: 707012500124
