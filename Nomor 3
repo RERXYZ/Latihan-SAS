@@ -1,0 +1,8 @@
+def total_harga(data):
+    total = 0
+    for harga in data.values():
+        total += harga
+    print(f"Total Harga Semua Barang: {total}")
+
+barang = {"apel": 5000,"mangga": 7000,"jeruk": 8000}
+total_harga(barang)

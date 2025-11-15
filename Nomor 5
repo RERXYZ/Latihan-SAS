@@ -1,0 +1,11 @@
+def count_characters(s):
+    hasil = {}
+    for char in s:
+        if char in hasil:
+            hasil[char] += 1
+        else:
+            hasil[char] = 1
+    print(hasil)
+
+count_characters("banana")
+count_characters("hello")
