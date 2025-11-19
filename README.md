@@ -1,86 +1,21 @@
-# Penugasan 1
+# Penugasan 2
 
-## Fitur
+Kode ini membuat kelas abstrak `Mob` untuk semua jenis mob di game. `Mob` punya atribut `mob_count` untuk menghitung total mob hidup, dan property `health` untuk nyawa. Saat `health` turun ke 0, mob mati dan `mob_count` berkurang. Ada metode `receive_damage` untuk mengurangi HP, class method `get_total_mobs` untuk menampilkan total mob, dan static method `check_spawn` untuk menentukan apakah mob bisa muncul berdasarkan level cahaya.
 
-### 1. Tambah Todo
+`Zombie` dan `Creeper` adalah subclass `Mob` yang mengimplementasikan metode `attack`. `Zombie` memukul player, sedangkan `Creeper` meledak dan langsung mati.
 
-Menambahkan satu atau lebih kegiatan ke hari tertentu.
+Di bagian main, jika level cahaya < 7, program membuat Zombie dan Creeper, menampilkan total mob, lalu setiap mob menyerang dan menerima damage 10. Setelah itu, total mob yang masih hidup ditampilkan kembali.
 
-### 2. Tampilkan Todo
-
-Menampilkan jadwal berdasarkan hari yang dipilih.
-Jika mengetik **`semua`**, maka seluruh hari akan ditampilkan.
-
-### 3. Tampilkan Todo Tertentu
-
-Menampilkan jadwal untuk satu hari tertentu.
-
-### 4. Update Todo
-
-Mengganti seluruh isi jadwal untuk hari tertentu.
-
-### 5. Hapus Todo
-
-Menghapus semua jadwal pada hari yang dipilih.
-
-### 6. Keluar
-
-Menutup program.
-
-## Struktur Data
-
-Program menggunakan dictionary bernama `schedule`:
-
-```python
-schedule = {
-    'monday': [],
-    'tuesday': [],
-    'wednesday': [],
-    'thursday': [],
-    'friday': [],
-    'saturday': [],
-    'sunday': [],
-}
-```
-
-Setiap hari menyimpan list kegiatan (*todo*).
-
-## Fungsi Utama
-
-### `create(day, *todo)`
-
-Menambah kegiatan ke hari tertentu.
-
-### `read(*days)`
-
-Menampilkan jadwal:
-
-* Jika input `semua`, semua hari ditampilkan.
-* Jika input beberapa hari (dipisahkan koma), semua akan ditampilkan berurutan.
-
-### `find(day)`
-
-Menampilkan jadwal satu hari.
-
-### `update(day, *todo)`
-
-Mengganti seluruh isi jadwal hari tersebut.
-
-### `delete(day)`
-
-Menghapus semua jadwal pada hari tersebut.
-
-## Flow Program (`main()`)
-
-Program berjalan dalam loop dan menampilkan menu:
+Contoh outputnya:
 
 ```
-1. Tambah todo
-2. Tampilkan todo
-3. Tampilkan todo tertentu
-4. Update todo
-5. Hapus todo
-6. Keluar
+Total Mob: 2
+Zombie memukul player.
+Zombie sisa HP: 10
+----------
+Creeper meledak!
+Creeper mati.
+Creeper sisa HP: 0
+----------
+Total Mob: 1
 ```
-
-User memilih menu, lalu program menjalankan fungsi sesuai pilihan.

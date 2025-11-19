@@ -1,86 +1,65 @@
-schedule = {
-    'monday' : [],
-    'tuesday' : [],
-    'wednesday' : [],
-    'thursday' : [],
-    'friday' : [],
-    'saturday' : [],
-    'sunday' : [],
-}
+from abc import ABC, abstractmethod
 
-def create(day, *todo):
-    for i in todo:
-        schedule[day].append(i)
 
-def read(*days):
-    if days[0] == 'semua':
-        days = list(schedule.keys())
+class Mob(ABC):
+    mob_count = 0
 
-    for d in days:
-        print(f"\n=== {d.upper()} ===")
-        if not schedule[d]:
-            print("(tidak ada jadwal)")
-        else:
-            for i, j in enumerate(schedule[d], start=1):
-                print(f"{i}. {j}")
+    def __init__(self, name, health):
+        self._name = name
+        self.__health = health
+        Mob.mob_count += 1
 
-def find(day):
-    print(f"\n=== {day.upper()} ===")
-    if not schedule[day]:
-        print("(tidak ada jadwal)")
-    else:
-        for i, j in enumerate(schedule[day], start=1):
-            print(f"{i}. {j}")
+    @property
+    def health(self):
+        return self.__health
 
-def update(day, *todo):
-    schedule[day] = list(todo)
+    @health.setter
+    def health(self, value):
+        self.__health = max(0, value)
+        if self.__health == 0:
+            print(f"{self._name} mati.")
+            Mob.mob_count -= 1
 
-def delete(day):
-    schedule[day] = []
+    def receive_damage(self, amount):
+        self.health -= amount
+        print(f"{self._name} sisa HP: {self.health}")
 
-def main():
-    while True:
-        print("""
-=== JADWAL HARIAN ===
-1. Tambah todo
-2. Tampilkan todo
-3. Tampilakan todo tertentu
-4. Update todo
-5. Hapus todo
-6. Keluar
-""")
+    @classmethod
+    def get_total_mobs(cls):
+        print(f"Total Mob: {cls.mob_count}")
 
-        choice = input("Pilih: ")
+    @staticmethod
+    def check_spawn(light_level):
+        return light_level < 7
 
-        if choice == "1":
-            day = input("Hari: ").lower()
-            todos = input("Todo (pisahkan dengan koma): ").split(",")
-            create(day, *[t.strip() for t in todos])
+    @abstractmethod
+    def attack(self):
+        pass
 
-        elif choice == "2":
-            days = input("Hari (pisahkan dengan koma atau ketik 'semua'): ").lower().split(",")
-            read(*[d.strip() for d in days])
 
-        elif choice == "3":
-            day = input("Hari: ").lower()
-            find(day)
+class Zombie(Mob):
+    def attack(self):
+        print(f"{self._name} memukul player.")
 
-        elif choice == "4":
-            day = input("Hari: ").lower()
-            todos = input("Todo baru (pisahkan dengan koma): ").split(",")
-            update(day, *[t.strip() for t in todos])
 
-        elif choice == "5":
-            day = input("Hari: ").lower()
-            delete(day)
-            print("Terhapus")
+class Creeper(Mob):
+    def attack(self):
+        print(f"{self._name} meledak!")
+        self.health = 0
 
-        elif choice == "6":
-            print("bye!")
-            break
 
-        else:
-            print("Tidak ada yang cocok!")
+if __name__ == "__main__":
+    if Mob.check_spawn(5):
+        zombie = Zombie("Zombie", 20)
+        creeper = Creeper("Creeper", 20)
 
-if __name__ == '__main__':
-    main()
+    Mob.get_total_mobs()
+
+    mobs = [zombie, creeper]
+
+    for mob in mobs:
+        mob.attack()
+        mob.receive_damage(10)
+        print("-" * 10)
+
+    Mob.get_total_mobs()
